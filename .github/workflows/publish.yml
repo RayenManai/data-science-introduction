@@ -1,0 +1,42 @@
+name: Render and Update Index
+
+on:
+  push:
+    branches:
+      - main
+permissions: 
+    contents: write
+    pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Update Index
+        run: |
+              # Update index.qmd
+              echo "<html><head><title>Index</title></head><body>" >> index.qmd
+              for file in Quarto-files/*.qmd; do
+                filename=$(basename "$file")
+                filename_no_ext="${filename%.*}"
+                echo "<a href='Quarto-files/${filename_no_ext}.html'>${filename_no_ext}</a><br>" >> index.qmd
+              done
+              echo "</body></html>" >> index.qmd
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.3.340
+
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+      

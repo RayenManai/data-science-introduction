@@ -21,7 +21,7 @@ jobs:
       - name: Render and Update Index
         run: |
           # Render QMD files
-          quarto render --from Quarto-files --to _site --html
+          quarto render 
           
           # Update index.html
           echo "<html><head><title>Index</title></head><body>" > _site/index.html

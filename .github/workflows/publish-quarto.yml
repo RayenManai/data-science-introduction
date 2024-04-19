@@ -35,6 +35,6 @@ jobs:
             for file in Quarto-files/*.qmd; do
               filename=$(basename "$file")
               filename_no_ext="${filename%.*}"
-              echo "<a href='${filename_no_ext}.html'>${filename_no_ext}</a><br>" >> index.html
+              echo "<a href='Quarto-files/${filename_no_ext}.html'>${filename_no_ext}</a><br>" >> index.html
             done
             echo "</body></html>" >> index.html

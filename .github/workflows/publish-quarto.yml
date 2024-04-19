@@ -1,0 +1,37 @@
+name: Render and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.3.553
+
+      - name: Render QMD files
+        run: |
+          quarto render --from Quarto-files --to _site --html
+          echo "index.qmd" >> _site/index.md
+          for file in Quarto-files/*.qmd; do
+            filename=$(basename "$file")
+            filename_no_ext="${filename%.*}"
+            echo "- [${filename_no_ext}](${file})" >> _site/index.md
+          done
+
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages # rendered HTML files will be pushed here
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

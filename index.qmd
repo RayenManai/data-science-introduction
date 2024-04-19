@@ -1,0 +1,6 @@
+---
+title: R Quarto files
+date: last-modified
+resources:
+  - .nojekyll
+---

@@ -31,10 +31,10 @@ jobs:
       - name: Update Index
         run: |
             # Update index.html
-            echo "<html><head><title>Index</title></head><body>" > _site/index.html
+            echo "<html><head><title>Index</title></head><body>" > index.html
             for file in Quarto-files/*.qmd; do
               filename=$(basename "$file")
               filename_no_ext="${filename%.*}"
-              echo "<a href='${filename_no_ext}.html'>${filename_no_ext}</a><br>" >> _site/index.html
+              echo "<a href='${filename_no_ext}.html'>${filename_no_ext}</a><br>" >> index.html
             done
-            echo "</body></html>" >> _site/index.html
+            echo "</body></html>" >> index.html

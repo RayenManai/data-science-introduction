@@ -5,5 +5,12 @@
     "title": "Meet the penguins",
     "section": "",
     "text": "Note: Exercise is based on work from Mine Çetinkaya-Rundel.\nFor this application exercise, we’ll use the tidyverse and palmerpenguins packages.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.0     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\nDemo: Add the chunk option message: false to the above chunk. See what happens.\nThe dataset we will visualize is called penguins. Let’s glimpse() at it.\nYour turn: Replace #add code here with the code for “glimpse”ing at the data penguins data frame – glimpse(penguins). Render the document and view the output.\n\n# add code here\n\nDemo: First, replace the blank below with the number of rows in the penguins data frame based on the output of the chunk below. Then, replace it with “inline code” and render again.\n\nnrow(penguins)\n\n[1] 344\n\n\nThere are ___ penguins in the penguins data frame.\nYou can use inline R code if you don’t want to enter the value by hand:\nThere are ___ penguins in the penguins data frame.\n\nInsert code chunk\nYour turn: Assign the value 2 to an object called x and multiply by 3.\nDemo: In the console, add 5 to the object x. What happens?"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Quarto files",
+    "section": "",
+    "text": "Index\n\n\n\n01-meet-the-penguins"
   }
 ]

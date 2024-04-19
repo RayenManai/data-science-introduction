@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Data Science",
+    "section": "",
+    "text": "Week\nTopic Resume\n\n\n\n\nWeek 1\nIntro to Data Science\n\n\nWeek 2\nData and visualization"
+  },
+  {
     "objectID": "Quarto-files/hotels-template.html",
     "href": "Quarto-files/hotels-template.html",
     "title": "Hotel bookings - data wrangling",

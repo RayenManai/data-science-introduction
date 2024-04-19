@@ -32,6 +32,9 @@ jobs:
         with:
           version: 1.3.340
       
+      - name: quarto index
+        run: quarto render index.qmd
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
     

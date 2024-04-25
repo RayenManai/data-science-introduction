@@ -85,8 +85,141 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="data-and-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-visualization">2.1 Data and visualization</h2>
+<blockquote class="blockquote">
+<p>In a dataset, each row is an <strong>observation</strong> and each column is a <strong>variable</strong>.</p>
+</blockquote>
+<section id="exploratory-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory data analysis</h4>
+<p>Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics. Often, EDA is visual – this is what we’ll focus on first. But we might also calculate summary statistics and perform data transformation at (or before) this analysis stage – this is what we’ll focus on next.</p>
+</section>
+<section id="ggplot2" class="level4">
+<h4 class="anchored" data-anchor-id="ggplot2">ggplot2:</h4>
+<p>Data visualization is the creation and study of the visual representation of data.<br>
+Many tools exist for visualizing data, and R is one of them.</p>
+<blockquote class="blockquote">
+<p>ggplot2 is tidyverse’s data visualization package, i.e., ggplot2 is loaded after running. The gg stands for <strong>Grammar of Graphics</strong>: tool that enables us to concisely describe the components of a graphic.</p>
+</blockquote>
+<pre><code>library(tidyverse)</code></pre>
+<p>Let’s look at the plot of mass vs.&nbsp;height of Star Wars characters:</p>
+<pre><code>ggplot(
+    data= starwars,
+    mapping = aes(x = height, y = mass)
+) + 
+geom_point() +
+labs(
+    title = "Mass vs. height of Starwars characters",
+    x="Height (cm)", y="Weight(kg)"
+)</code></pre>
+<p><img src="./screenshots/7.png"></p>
+<blockquote class="blockquote">
+<p>ggplot() is the main function in ggplot2. It initializes the plot. The different layers of the plots are then added consecutively.</p>
+</blockquote>
+</section>
+<section id="example-with-the-dataset-penguins-from-the-package-palmerpenguins" class="level4">
+<h4 class="anchored" data-anchor-id="example-with-the-dataset-penguins-from-the-package-palmerpenguins">example with the dataset penguins from the package palmerpenguins</h4>
+<blockquote class="blockquote">
+<p>The function aes() creates the mapping from the dataset variables to the plot’s aesthetics.<br>
+Represent each observation with a point by using geom_point().<br>
+Map species to the colour of each observation point.<br>
+Title the plot “Bill depth and length”.<br>
+Add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”. Label the x- and y-axis as “Bill depth (mm)” and “Bill length (mm)”, respectively<br>
+Label the legend “Species”<br>
+Add a caption for the data source.<br>
+use a discrete colour scale to be perceived by viewers with common colour blindness. (+ scale_colour_viridis_d())</p>
+</blockquote>
+<pre><code>library(palmerpenguins)
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) + 
+    geom_point() +
+    labs(
+      title = "Bill depth and length",
+      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+      x = "Bill depth (mm)", y = "Bill length (mm)",
+      colour = "Species",
+      caption = "Source: Palmer Station LTER/palmerpenguins package")
+</code></pre>
+<p><img src="./screenshots/8.png"></p>
+</section>
+<section id="aesthetics" class="level4">
+<h4 class="anchored" data-anchor-id="aesthetics">Aesthetics:</h4>
+<p>Commonly used aesthetics of a graphic are <strong>colour, shape, size or alpha (transparency)</strong><br>
+Remark. The values of shape can only be specified by a discrete variable. Using instead a continuous variable will lead to an error.</p>
+</section>
+<section id="mapping-vs-setting" class="level4">
+<h4 class="anchored" data-anchor-id="mapping-vs-setting">Mapping vs setting:</h4>
+<div style="background-color:gray;">
+<p><span> <b>Mapping:</b> Determine the size, alpha, etc., of the geometric objects, like points, based on the values of a variable in the dataset.<br>
+Use aes() to define the mapping. <br> <b>Setting:</b> Determine the size, alpha, etc., of the geometric objects, like points, not based on the values of a variable in the dataset.<br>
+Specify the aesthetics within geom_*()</span></p>
+</div>
+<p><br></p>
+<p>mapping:</p>
+<pre><code>ggplot(
+ penguins,
+ aes(
+  x = bill_depth_mm,
+  y = bill_length_mm,
+  size = body_mass_g,
+  alpha = flipper_length_mm)) +
+ geom_point()</code></pre>
+<p>setting:</p>
+<pre><code>ggplot(penguins,
+  aes( x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point(
+  size = 2,
+  alpha = 0.5)</code></pre>
+</section>
+<section id="faceting" class="level4">
+<h4 class="anchored" data-anchor-id="faceting">Faceting:</h4>
+<blockquote class="blockquote">
+<p>Faceting means creating smaller plots that display different subsets of the data. Useful for exploring conditional relationships and large data.</p>
+</blockquote>
+<div style="background-color:gray;">
+<span> <b>facet_grid():</b>
+<ul>
+<li>
+able to create 2d grid
+</li>
+<li>
+rows ~ cols
+</li>
+<li>
+use . for no split in rows or columns
+</li>
+</ul>
+<p><b>facet_wrap():</b> 1d ribbon wrapped according to the number of rows and columns specified or available plotting area</p>
+</span></div>
+<p><br></p>
+<p><strong>Facets based on variables defining aesthetics</strong> When facets are built based on a variable used for coloring, the output will contain an unnecessary legend.<br>
+The information about the different species is already shown on the y-axis and, hence, doesn’t need to be repeated in the legend. One can remove the legend using either <strong>guides()</strong>, or <strong>theme(legend.position = “none”)</strong>.</p>
+<pre><code>ggplot(
+  penguins,
+  aes(x = bill_depth_mm, y = bill_length_mm,
+    color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() +
+  guides(color = FALSE)</code></pre>
+<p><img src="./screenshots/9.png"></p>
+</section>
+<section id="geoms" class="level4">
+<h4 class="anchored" data-anchor-id="geoms">Geoms:</h4>
+<p>Other geoms are applied analogously to geom_point(). One can also combine several geoms in one plot.<br>
+Different geoms describe different aspects of the data, and the choice of the appropriate geom also depends on the type of the data.</p>
+<pre><code>ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm,
+  color = species)) +
+  geom_point() +
+  geom_smooth()</code></pre>
+<p><img src="./screenshots/10.png"></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

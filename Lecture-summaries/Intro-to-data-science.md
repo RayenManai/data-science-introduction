@@ -155,7 +155,7 @@ of clusters, and then take a simple random sample within each sampled cluster.
 
 >Cluster or multistage sampling can be more economical than the other sampling techniques.
 Also, unlike stratified samples, they are most useful when there is a large case-to-case variability within a cluster, but the clusters themselves do not look very different.
-###### examples:
+##### examples:
 A city council has requested a household survey be conducted in a suburban area of their city.
 The area is broken into many distinct and unique neighborhoods, some including large homes
 and some with only apartments. Which approach would likely be the least effective?

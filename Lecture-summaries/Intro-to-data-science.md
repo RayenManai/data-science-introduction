@@ -94,4 +94,88 @@ established. </li>
 <li> If researchers randomly assign subjects to various treatments in order to establish causal connections between the explanatory and response variables, we call it an <b>experiment</b>.</li>
 </ul>
 </div>
+<br>
 
+<div style='background-color:gray;'>
+<span>
+Extraneous variables, that affect both the explanatory and the response variable and
+that make it seem like there is a relationship between the two, are called <b>confounding</b> variables.
+</div>
+
+**Example:** A study found a rather strong correlation between the ice cream sales and the number of shark attacks for a number of beaches that were sampled.  
+**Conclusion:** Increasing ice cream sales causes more shark attacks (sharks like eating people full of ice cream).
+**Better explanation:** The confounding variable is temperature. Warmer temperatures cause ice cream sales to go up. Warmer temperatures also bring more people to the beaches, increasing the chances of shark attacks.
+
+#### Obtaining good samples - Sampling principles and strategies
+> If observational data are not collected in a random framework from a population, these statistical methods, i.e.,the estimates and errors associated with the estimates, are not reliable.
+
+<div style='background-color:gray;'>
+<span>
+<p style='margin-top:1em; text-align:center'>
+<b>Simple random sampling</b></p>
+Randomly select cases from the population without implied connection between the selected
+points.
+A sample is called a simple random sample if each case in the population has an equal chance of
+being included in the final sample.
+</div>
+<br>
+<img src="./screenshots/3.png">
+<br>
+<div style='background-color:gray;'>
+<span>
+<p style='margin-top:1em; text-align:center'>
+<b>Stratified sampling</b></p>
+Similar cases from the population are grouped into so-called strata. Afterward, a simple random sample is taken from each stratum.
+Stratified sampling is especially useful when the cases in each stratum are very similar in terms of the outcome of interest.
+</div>
+<br>
+<img src="./screenshots/4.png">
+<br>
+
+<div style='background-color:gray;'>
+<span>
+<p style='margin-top:1em; text-align:center'>
+<b>Cluster sampling</b></p>
+Clusters are usually not made up of homogeneous observations. We take a simple random sample
+of clusters, and then sample all observations in that cluster.
+</div>
+<img src="./screenshots/5.png">
+<br>
+
+<div style='background-color:gray;'>
+<span>
+<p style='margin-top:1em; text-align:center'>
+<b>Multistage sampling</b></p>
+Clusters are usually not made up of homogeneous observations. We take a simple random sample
+of clusters, and then take a simple random sample within each sampled cluster.
+</div>
+<br>
+<img src="./screenshots/6.png">
+<br>
+
+>Cluster or multistage sampling can be more economical than the other sampling techniques.
+Also, unlike stratified samples, they are most useful when there is a large case-to-case variability within a cluster, but the clusters themselves do not look very different.
+###### examples:
+A city council has requested a household survey be conducted in a suburban area of their city.
+The area is broken into many distinct and unique neighborhoods, some including large homes
+and some with only apartments. Which approach would likely be the least effective?
+
+<details>
+    <summary>Show Answer</summary>
+We can think of the different neighborhoods as different clusters/strata. Since they are distinct but homogeneous within, cluster samlping would be the least effective.
+</details>
+<br>
+
+On a large college campus first-year students and sophomores live in dorms located on the
+eastern part of the campus and juniors and seniors live in dorms located on the western part
+of the campus. Suppose you want to collect student opinions on a new housing structure the
+college administration is proposing and you want to make sure your survey equally represents
+opinions from students from all years.  
+a) What type of study is this?
+b) Suggest a sampling strategy for carrying out this study
+
+<details>
+    <summary>Show Answer</summary>
+a) observational study  
+b) To ensure students from each year are reasonably represented, we might choose to randomly sample a fixed number of students, say 60, from each part of the campus (east and west). Since a random sample of fixed size was taken within each part in this scenario, this represents a stratified sampling.
+</details>

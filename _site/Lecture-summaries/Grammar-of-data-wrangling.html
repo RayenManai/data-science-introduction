@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-04-28">
 
-<title>Introduction to Data Science</title>
+<title>grammar-of-data-wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,51 +82,164 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Introduction to Data Science</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="grammar-of-data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="grammar-of-data-wrangling">3 Grammar of data wrangling</h2>
+<blockquote class="blockquote">
+<p>In this chapter, the <strong>dplyr</strong> package of tidyverse is introduced. It is a grammar of data manipulation, providing a consistent set of verbs (=functions) that help you solve the most common data manipulation challenges.</p>
+</blockquote>
+<p>The main verbs are:</p>
+<ul>
+<li><strong>select:</strong> pick columns by name,</li>
+<li><strong>arrange:</strong> reorder rows,</li>
+<li><strong>filter:</strong> pick rows matching criteria,</li>
+<li><strong>mutate:</strong> add new variables,</li>
+<li><strong>summarise:</strong> reduce variables to values.</li>
+</ul>
+<div style="background-color:gray;">
+<span> For all dplyr functions:
+<ul>
+<li>
+the first argument is always a data frame
+</li>
+<li>
+the subsequent arguments say what to do with that data frame
+</li>
+<li>
+always return a data frame
+</li>
+<li>
+don’t modify in place
+</li>
+</ul>
+</span></div>
+<section id="data-io" class="level4">
+<h4 class="anchored" data-anchor-id="data-io">Data I/O:</h4>
+<p>The tidyverse toolbox for data input/output is the <strong>readr</strong> package. It is one of the core tidyverse packages loaded when loading the tidyverse. Since we already loaded the tidyverse, readr is ready for usage.</p>
+<p>The most general function for reading in data is <strong>read_delim()</strong>. Several variants with respect to the relevant field separator exist to make our lives easier. In our case, it is a comma. Therefore, we use <strong>read_csv()</strong> (in case of a semicolon, it would be <strong>read_csv2()</strong>).</p>
+<pre><code>hotels &lt;- read_csv("/data/hotels.csv")</code></pre>
+<section id="select---extracting-columns" class="level6">
+<h6 class="anchored" data-anchor-id="select---extracting-columns">Select - extracting columns:</h6>
+<p>select(dataframe, …variable)</p>
+<pre><code>select(
+    hotels,
+    lead_time
+)</code></pre>
+<p>In this example, hotels and the output of select() are a <strong>tibble</strong>, which is a special kind of data frame. In particular, it prints information about the dimension of the data and the type of the variables. Most of the time we will work with tibbles.</p>
+</section>
+<section id="arrange" class="level6">
+<h6 class="anchored" data-anchor-id="arrange">Arrange:</h6>
+<blockquote class="blockquote">
+<p>By default, arrange() will order the entries ascendingly.</p>
+</blockquote>
+<pre><code>arrange(
+    select(hotels
+           hotel, lead_time),
+    desc(lead_time)
+)</code></pre>
+<p>A more efficient way of combining several steps into one command is to use <strong>Pipes</strong></p>
+</section>
+<section id="pipes" class="level6">
+<h6 class="anchored" data-anchor-id="pipes">Pipes:</h6>
+<blockquote class="blockquote">
+<p>The pipe operator |&gt; : a technique for passing information from one process to another.</p>
+</blockquote>
+<p>By default, the object on the left is passed as the first argument of the function on the right. The native pipe also has a placeholder option, allowing objects to be passed to a specific argument.</p>
+<pre><code>hotels |&gt;
+    select(hotel, lead_time) |&gt;
+    arrange(desc(lead_time))</code></pre>
+<p><strong>Remark:</strong> dplyr knows it’s own pipe operator %&gt;%, which is actually implemented in the package magrittr. This operator is older but has the drawback of working only in an “extended tidyverse”</p>
+</section>
+<section id="piping-vs-layering" class="level6">
+<h6 class="anchored" data-anchor-id="piping-vs-layering">Piping vs layering:</h6>
+<p>We use |&gt; mainly in dplyr pipelines: we pipe the output of the previous line of code as the first input of the next line of code We use + in ggplot2 plots for “layering”: we create the plot in layers, separated by +</p>
+</section>
+<section id="helper-functions-in-combination-with-select" class="level6">
+<h6 class="anchored" data-anchor-id="helper-functions-in-combination-with-select">Helper functions in combination with select()</h6>
+<ul>
+<li>starts_with(): Starts with a prefix</li>
+<li>ends_with(): Ends with a suffix</li>
+<li>contains(): Contains a literal string</li>
+<li>num_range(): Matches a numerical range like x01, x02, x03</li>
+<li>one_of(): Matches variable names in a character vector</li>
+<li>everything(): Matches all variables</li>
+<li>last_col(): Select last variable, possibly with an offset</li>
+<li>matches(): Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)</li>
+</ul>
+<pre><code>hotels |&gt;
+    select(starts_with("arrival"))</code></pre>
+</section>
+<section id="filter-rows" class="level6">
+<h6 class="anchored" data-anchor-id="filter-rows">Filter rows:</h6>
+<blockquote class="blockquote">
+<p>The subsequent filter() arguments specify conditions that need to be fulfilled by a row (= an ob- servation) to become part of the output. We can specify multiple conditions, which will be combined with an &amp;.</p>
+</blockquote>
+<pre><code>hotels |&gt;
+    filter(
+        adults == 0,
+        children &gt;= 1
+    ) |&gt;
+    select(adults, babies, children)</code></pre>
+<blockquote class="blockquote">
+<p>If two (or more) conditions should be combined with an “or”, we must do this explicitly using the | operator.</p>
+</blockquote>
+<pre><code>hotels |&gt;
+    filter(
+        adults == 0,
+        children &gt;= 1 | babies &gt;= 1 
+    ) |&gt;
+    select(adults, babies, children)</code></pre>
+<blockquote class="blockquote">
+<p>In some cases, we might be interested in the unique observations of a variable. That’s when we want to use the <strong>distinct()</strong> function Combining distinct() with arrange() leads to a friendlier output to read through the fact being ordered.</p>
+</blockquote>
+<pre><code>hotels |&gt;
+    distinct(hotel,
+             market_segment) |&gt;  #distinct combinations
+    arrange(hotel, market_segment)</code></pre>
+</section>
+<section id="slice-for-specific-row-numbers" class="level6">
+<h6 class="anchored" data-anchor-id="slice-for-specific-row-numbers">Slice for specific row numbers:</h6>
+<blockquote class="blockquote">
+<p>If we know which rows to extract, slice() can do the job.</p>
+</blockquote>
+<pre><code>hotels |&gt;
+    slice(1:5) # first five</code></pre>
+<pre><code>slice_head(df, n = 1, by = group) # first row from each group.
+slice_tail(df, n = 1, by = group) # last row in each group.
+slice_min(df, x, n = 1) # smallest value of column x.
+slice_max(df, x, n = 1) # largest value of column x.
+slice_sample(df, n = 1) # one random row.</code></pre>
+</section>
+<section id="adding-or-changing-variables-with-mutate" class="level6">
+<h6 class="anchored" data-anchor-id="adding-or-changing-variables-with-mutate">Adding or changing variables with mutate()</h6>
+<p>Imagine that it’s not essential for the analysis to distinguish between children and babies. Instead, we would like to have the number of little ones (children or babies) staying in the room.</p>
+<pre><code>hotels |&gt;
+    mutate(little_ones= children + babies) |&gt;
+    select(children, babies, little_ones) |&gt;
+    arrange(desc(little_ones))</code></pre>
+<blockquote class="blockquote">
+<p>count the combinations of how many bookings for all possible combinations of hotel and little ones:</p>
+</blockquote>
+<pre><code>hotels |&gt;
+    mutate(little_ones = children + babies) |&gt;
+    count(hotel, little_ones) |&gt;  #count creates a further column n
+    mutate(prop = n / sum(n))</code></pre>
+<p><img src="./screenshots/11.png"></p>
+</section>
+<section id="tidyverse-style-guide" class="level6">
+<h6 class="anchored" data-anchor-id="tidyverse-style-guide">Tidyverse style guide</h6>
+<blockquote class="blockquote">
+<p>Good code styling is not necessary but is highly beneficial. The readability of your code is something you benefit from the most.</p>
+</blockquote>
+<p>The <strong>styler</strong> package provides functions for converting code to follow a chosen style.<br>
+By using the styler addin for the RStudio IDE, it makes it even easier than that.</p>
 
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 28, 2024</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
 
-
-</header>
-
-
-<table class="table">
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Topic Resume</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Week 1</td>
-<td><a href="./Lecture-summaries/Intro-to-data-science.html">Intro to Data Science</a></td>
-</tr>
-<tr class="even">
-<td>Week 2</td>
-<td><a href="./Lecture-summaries/Data-and-visualization.html">Data and visualization</a> <br> <a href="./Lecture-summaries/Grammar-of-data-wrangling.html">Grammar of data wrangling</a></td>
-</tr>
-</tbody>
-</table>
-
-
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

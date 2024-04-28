@@ -11,7 +11,7 @@
     "href": "index.html#footnotes",
     "title": "Introduction to Data Science",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nCan be opened from R Studio with:\nlearnr::run_tutorial(\"exploratory-data-analysis\",\"idsst.rtutorials\")↩︎"
+    "text": "Footnotes\n\n\ncan be opened from R Studio with:\nlearnr::run_tutorial(\"exploratory-data-analysis\",\"idsst.rtutorials\")↩︎"
   },
   {
     "objectID": "Lecture-summaries/Intro-to-data-science.html",

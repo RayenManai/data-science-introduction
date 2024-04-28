@@ -20,6 +20,9 @@ jobs:
         run: |
               # Update index.qmd
               echo "<html><head><title>Index</title></head><body>" >> index.qmd
+              echo "<br>" >> index.qmd
+              echo "<h2>Quarto Files:</h2>" >> index.qmd
+              echo "<br>" >> index.qmd
               for file in Quarto-files/*.qmd; do
                 filename=$(basename "$file")
                 filename_no_ext="${filename%.*}"

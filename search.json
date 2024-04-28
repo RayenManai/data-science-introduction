@@ -4,7 +4,14 @@
     "href": "index.html",
     "title": "Introduction to Data Science",
     "section": "",
-    "text": "Week\nTopic Resume\n\n\n\n\nWeek 1\nIntro to Data Science\n\n\nWeek 2\nData and visualization  Grammar of data wrangling\n\n\n\n\n\n\nIndex\n\n\n\n01-meet-the-penguins hotels-template"
+    "text": "Week\nTopic Resume\nR Lab1 keywords\n\n\n\n\n1\n- Intro to Data Science\nprogramming-basics\n\n\n2\n- Data and visualization  - Grammar of data wrangling\ntibbles, exploratory-data-analysis (variation vs covariation), visualization-basics, isolating"
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Introduction to Data Science",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\ncan be opened from R Studio with:\nlearnr::run_tutorial(\"exploratory-data-analysis\",\"idsst.rtutorials\")\n\n\n\nIndex\n\n\n\n01-meet-the-penguins hotels-template\n\n\n↩︎"
   },
   {
     "objectID": "Lecture-summaries/Intro-to-data-science.html",

@@ -179,3 +179,46 @@ b) Suggest a sampling strategy for carrying out this study
 a) observational study  
 b) To ensure students from each year are reasonably represented, we might choose to randomly sample a fixed number of students, say 60, from each part of the campus (east and west). Since a random sample of fixed size was taken within each part in this scenario, this represents a stratified sampling.
 </details>
+
+#### More on experiments: 
+###### Principles of experimental design:
+1. **Control:** Compare the treatment of interest to a control group.
+2. **Randomize:** Randomly assign subjects to treatments, and randomly sample from the popula-
+tion whenever possible.
+3. **Replicate:** Within a study, replicate by collecting a sufficiently large sample. Or replicate the
+entire study.
+4. **Block:** If there are variables that are known or suspected to affect the response variable, first
+group subjects into blocks based on these variables, and then randomize cases within each block to treatment groups
+
+###### example:
+It is suspected that energy gels might affect pro and amateur athletes differently, therefore we
+block for pro status:
+1. divide the sample into pro and amateur
+2. randomly assign pro athletes to treatment and control groups
+3. randomly assign amateur athletes to treatment and control groups
+4. pro/amateur status is equally represented in the resulting treatment and control groups
+- Treatment: energy gel
+- Control: no energy gel
+<hr>
+A study is designed to test the effect of light level and noise level on the exam performance of students. The researcher also believes that light and noise levels might affect males and females differently, so she wants to make sure both genders are equally represented in each group: 
+
+<details>
+    <summary>Show Answer</summary>
+There are 2 explanatory variables (light and noise), 1 blocking variable (gender), and 1 response variable (exam performance)
+</details>
+
+>**Treatment variables** are conditions we can impose on the experimental units.
+
+>**Blocking variables** are characteristics that the experimental units come with, that we would like to control for.
+Blocking is like stratifying, except used in experimental settings when randomly assigning, as opposed to sampling.
+
+###### More experimental design terminology
+- **Placebo:** fake treatment, often used as the control group for medical studies
+- **Placebo effect:** experimental units showing improvement simply because they believe they are receiving a special treatment
+- **Blinding:** when experimental units do not know whether they are in the control or treatment group
+- **Double-blind:** when both the experimental units and the researchers who interact with the patients do not know who is in the control and who is in the treatment group
+  
+<details>
+    <summary>What is the main difference between observational studies and experiments?</summary>
+Most experiments use random assignment while observational studies do not.
+</details>

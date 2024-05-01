@@ -8,6 +8,7 @@ resources:
 |------------|------------|------------|
 |1 | - [Intro to Data Science](./Lecture-summaries/Intro-to-data-science.md)|programming-basics|
 |2 | - [Data and visualization](./Lecture-summaries/Data-and-visualization.md) <br> - [Grammar of data wrangling](./Lecture-summaries/Grammar-of-data-wrangling.md)| tibbles, <b>exploratory-data-analysis</b> (variation vs covariation), visualization-basics, isolating|  
+|3 | - [Experiments; Explore data](./Lecture-summaries/Experiments-explore-data.md)|bar-charts|
 
 [^1]: can be opened from R Studio with:   
 ```learnr::run_tutorial("exploratory-data-analysis","idsst.rtutorials")```  

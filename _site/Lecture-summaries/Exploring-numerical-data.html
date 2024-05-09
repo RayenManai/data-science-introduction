@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-05-09">
 
-<title>Introduction to Data Science</title>
+<title>exploring-numerical-data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,68 +111,180 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Introduction to Data Science</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
+<section id="exploring-numerical-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-numerical-data">Exploring Numerical Data</h2>
+<section id="dot-plots-and-the-mean" class="level6">
+<h6 class="anchored" data-anchor-id="dot-plots-and-the-mean">Dot plots and the mean:</h6>
+<blockquote class="blockquote">
+<p>we work again with the loan data from the Lending Club. But this time, we are considering only a subsample of size 50. In addition, we select just some of the variables</p>
+</blockquote>
+<p>visualizing the shape of the distribution of a single variable.</p>
+<pre><code>ggplot(
+ loans,
+ aes(x = interest_rate)
+ ) +
+ labs(x = "Interest rate") +
+ geom_dotplot()</code></pre>
+</section>
+<section id="empirical-mean" class="level6">
+<h6 class="anchored" data-anchor-id="empirical-mean">Empirical mean:</h6>
+<blockquote class="blockquote">
+<p>The empirical mean, often called the <strong>average</strong> or <strong>sample mean</strong>, is a common way to measure the center of a distribution of data <span class="math display">\[ \bar{x}_{n} = \frac{x_1 + x_2 + ... + x_n}{n} \]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The <strong>population mean</strong> is often denoted as 𝜇. Sometimes a subscript, such as 𝑥, is used to represent which variable the population mean refers to.<br>
+Often it is too expensive or even not possible (population data are rarely available) to measure the population mean 𝜇 precisely. Hence we have to estimate 𝜇 using the sample mean <span class="math inline">\(\bar{x}\)</span></p>
+</blockquote>
+<p>We can use summarize() from the dplyr package to <strong>summarize</strong> the data by computing the sample mean of the interest rate:</p>
+<pre><code>loans |&gt;
+ summarize(
+  mean_ir = mean(interest_rate)
+  )
 
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 9, 2024</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
+# # A tibble: 1 x 1
+#   mean_ir
+#   &lt;dbl&gt;
+# 1  11.6</code></pre>
+<p>The sample mean is a <strong>point estimate</strong> of 𝜇𝑥. It’s not perfect, but it is our best guess of the average interest rate on all loans in the population studied.<br>
+Later, we will discuss methods for assessing the accuracy of point estimates, which is necessary because accuracy varies with the sample size</p>
+<pre><code>mean(loans$interest_rate)
+
+# [1] 11.5672</code></pre>
+</section>
+<section id="group-means" class="level6">
+<h6 class="anchored" data-anchor-id="group-means">Group means:</h6>
+<pre><code>loans |&gt;
+ group_by(grade) |&gt;
+ summarize(
+ mean_ir = mean(interest_rate)
+ )
+
+# # A tibble: 5 x 2
+# grade mean_ir
+# &lt;fct&gt; &lt;dbl&gt;
+# 1 A 6.77
+# 2 B 10.2
+# 3 C 13.8
+# 4 D 18.6
+# 5 E 25.6</code></pre>
+<p>After the group_by() step, all computations are performed separately for each level of grade.<br>
+We detect an increasing average interest rate with a decreasing grade.</p>
+</section>
+<section id="histograms-and-shape" class="level6">
+<h6 class="anchored" data-anchor-id="histograms-and-shape">Histograms and shape:</h6>
+<p>Dot plots show the exact value for each observation. They are useful for small datasets but can become hard to read with larger samples.<br>
+Especially for larger samples, we prefer to think of the value as belonging to a <strong>bin</strong>. For the loans dataset, we created a table of counts for the number of loans with interest rates between 5.0% and 7.5%, then the number of loans with rates between 7.5% and 10.0%, and so on.</p>
+<pre><code>loans |&gt;
+ pull(interest_rate) |&gt;
+ cut(breaks = seq(5, 27.5, by = 2.5)) |&gt;
+ table()
+
+#
+# (5,7.5] (7.5,10] (10,12.5] (12.5,15] (15,17.5] (17.5,20]
+# 11 15 8 4 5 4
+# (20,22.5] (22.5,25] (25,27.5]
+# 1 1 </code></pre>
+<p>These binned counts are plotted as bars in a histogram.</p>
+<pre><code>ggplot(
+ loans,
+ aes(x = interest_rate)) +
+ geom_histogram(
+    breaks = seq(5, 27.5, 2.5),
+    colour = "white") +
+  labs(x = "Interest rate")</code></pre>
+<blockquote class="blockquote">
+<p>Histograms provide a view of the <strong>data density</strong>. Higher bars represent where the data are relatively more common. A smoothed-out histogram is known as a <strong>density plot</strong>.</p>
+</blockquote>
+<pre><code>ggplot(loan50, aes(x = interest_rate)) +
+ geom_density(fill = "black", alpha = 0.3) +
+ labs(x = "Interest rate", y = "Density")</code></pre>
+<p><img src="./screenshots/14.png"></p>
+</section>
+<section id="modality" class="level6">
+<h6 class="anchored" data-anchor-id="modality">Modality:</h6>
+<p>In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes.<br>
+A <strong>mode</strong> is a <strong>prominent peak</strong> in the distribution. There is only one prominent peak in the histogram of interest_rate.</p>
+<p><img src="./screenshots/15.png"></p>
+</section>
+<section id="variance-and-standard-deviation" class="level6">
+<h6 class="anchored" data-anchor-id="variance-and-standard-deviation">Variance and standard deviation</h6>
+<p>Here, we introduce two related measures of variability: <strong>the empirical variance</strong> and the <strong>empirical standard deviation</strong>. The standard deviation roughly describes how far away the typical observation is from the mean. We call the distance of an observation <span class="math inline">\(x_i\)</span> from its empirical mean̄ <span class="math inline">\(\bar{x}_n\)</span> its deviation <span class="math inline">\(x_i - \bar{x_n}\)</span>.<br>
+If we square these deviations and then take an average, the result is equal to the empirical variance. <img src="./screenshots/16.png"></p>
+<p>The empirical standard deviation is the square root of the empirical variance.<br>
+<img src="./screenshots/17.png"> &gt; the population values for variance and standard deviation have typical symbols: <span class="math inline">\(\sigma²\)</span> for the variance and <span class="math inline">\(\sigma\)</span> for the standard deviation.</p>
+<pre><code>loans |&gt;
+ summarize(
+ var_ir = var(interest_rate), sd_ir = sd(interest_rate)
+ )
+
+# # A tibble: 1 x 2
+#   var_ir sd_ir
+#   &lt;dbl&gt; &lt;dbl&gt;
+# 1  25.5 5.05</code></pre>
+</section>
+<section id="box-plots-quartiles-and-the-median" class="level6">
+<h6 class="anchored" data-anchor-id="box-plots-quartiles-and-the-median">Box plots, quartiles, and the median</h6>
+<blockquote class="blockquote">
+<p>A box plot summarizes a dataset using five statistics while also identifying unusual observations. The dark line inside the box represents the <strong>empirical median</strong></p>
+</blockquote>
+</section>
+<section id="median" class="level6">
+<h6 class="anchored" data-anchor-id="median">Median:</h6>
+<p>At least 50% of the data are less than or equal to the median, and at least 50% are greater than or equal to it.<br>
+The empirical median is the value that splits the data in half when ordered in ascending order.</p>
+<p><strong>Remark.</strong> When there is an odd number of observations, there will be precisely one observation that splits the data into two halves, and in such a case, that observation is the median.<br>
+The empirical median can be computed in several ways for 𝑛 being an even number. One common approach is to define the empirical median of a sample 𝑥1, … , 𝑥𝑛 to be the average <span class="math inline">\(\frac{1}{2}(x_{\frac{n}{2}} + x_{\frac{n}{2} + 1})\)</span> where <span class="math inline">\(x_k\)</span> is the 𝑘-th smallest value.</p>
+<p>The 𝑘𝑡ℎ <strong>percentile</strong> is a number with at least 𝑘% of the observations below or equal to and at least 100 − 𝑘% above or equal to.</p>
+</section>
+<section id="interquartile-range-whiskers-and-outliers" class="level6">
+<h6 class="anchored" data-anchor-id="interquartile-range-whiskers-and-outliers">Interquartile range, whiskers and outliers</h6>
+<p>The box in a box plot represents the middle 50% of the data. The length of the box is called the <strong>interquartile range</strong>, or <strong>IQR</strong> for short.</p>
+<p>Like the standard deviation, the IQR is a <strong>measure of variability</strong> in data. The more variable the data, the larger the standard deviation and IQR.</p>
+<p><strong>The whiskers</strong> attempt to capture the data outside of the box. The whiskers reach to the minimum and the maximum values in the data, unless there are points that are considered unusually high or unusually low:<br>
+<strong><span class="math inline">\(&gt;\)</span> 1.5 times the IQR away from the first or the third quartile</strong> which are labeled with a dot and referred to as potential <strong>outliers</strong>.</p>
+<p>An <strong>outlier</strong> is an observation that appears extreme relative to the rest of the data. Examining data for outliers serves many useful purposes, including: - identifying strong skew in the distribution, - identifying possible data collection or data entry errors, and - providing insight into interesting properties of the data.</p>
+<p>However, remember that some datasets have a naturally long skew, and outlying points do not represent any sort of problem in the dataset</p>
+</section>
+<section id="comparing-numerical-data-across-groups" class="level5">
+<h5 class="anchored" data-anchor-id="comparing-numerical-data-across-groups">Comparing numerical data across groups:</h5>
+<p>Side-by-side boxplots is a common tool to compare the distribution of a numerical variable across groups.</p>
+<pre><code>ggplot(loans, aes(
+ x = interest_rate,
+ y = grade
+ )) +
+ geom_boxplot() +
+ labs(
+ x = "Interest rate (%)",
+ y = "Grade",
+ title = "Interest rates of Lending Club loans",
+ subtitle = "by grade of loan"
+ )</code></pre>
+<p>When using a histogram, we can fill the bars with different colors according to the levels of the categorical variable.</p>
+<pre><code>ggplot(loans, aes(
+ x = interest_rate,
+ fill = homeownership
+ )) +
+ geom_histogram(binwidth = 2, colour = "white") +
+ labs(
+ x = "Interest rate (%)",
+ title = "Interest rates of Lending Club loans"
+ ) </code></pre>
+<p>With the position argument of geom_histogram(), one can vary where to put the bars for the different groups. The default is to put them on top of each other. The <strong>dodge</strong> position puts them next to each other.</p>
+<p>Another technique for comparing numerical data across different groups would be <strong>faceting</strong>.</p>
+<pre><code>ggplot(loans_full_schema,
+ aes(x = interest_rate)) +
+ geom_histogram(
+ bins = 10, colour = "white") +
+ facet_grid(term ~ homeownership)</code></pre>
 
 
-</header>
+</section>
+</section>
 
-
-<table class="table">
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Topic Resume</th>
-<th>R Lab<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> keywords</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>- <a href="./Lecture-summaries/Intro-to-data-science.html">Intro to Data Science</a></td>
-<td>programming-basics</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>- <a href="./Lecture-summaries/Data-and-visualization.html">Data and visualization</a> <br> - <a href="./Lecture-summaries/Grammar-of-data-wrangling.html">Grammar of data wrangling</a></td>
-<td>tibbles, <b>exploratory-data-analysis</b> (variation vs covariation), visualization-basics, isolating</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>- <a href="./Lecture-summaries/Experiments-explore-data.html">Experiments; Explore data</a> <br> - <a href="./Lecture-summaries/Exploring-numerical-data.html">Exploring Numerical Data</a></td>
-<td>bar-charts</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>can be opened from R Studio with:<br>
-<code>learnr::run_tutorial("exploratory-data-analysis","idsst.rtutorials")</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
